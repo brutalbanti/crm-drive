@@ -34,9 +34,6 @@ export const PopUp = ({ isPopUp, handlerPopUp, handleConfirmEdit, valueFirst, ha
                             {valueRole !== 'Пасажир' &&
                                 <option value="Пасажир">Пасажир</option>
                             }
-                            {valueRole !== 'Адмін' &&
-                                <option value="Адмін">Адмін</option>
-                            }
                             {valueRole !== 'Диспетчер' &&
                                 <option value="Диспетчер">Диспетчер</option>
                             }

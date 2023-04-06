@@ -3,8 +3,15 @@ import Form from 'react-bootstrap/Form';
 import React, { useState } from 'react';
 import { db } from '../../firebase/config';
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import './trips.css';
+import { IoClose } from 'react-icons/io5';
 
-export const SectionAddTrips = () => {
+interface popuptrips {
+    isPopUp?: boolean,
+    handlerPopUp: any
+}
+
+export const SectionAddTrips = ({ isPopUp, handlerPopUp }: popuptrips) => {
     const [dataTrips, setDataTrips] = useState<any>({ name: '', auto: '', start: '', finish: '', passengers: '' });
     const [error, setError] = useState('');
     const [succes, setSucces] = useState('');
@@ -42,13 +49,15 @@ export const SectionAddTrips = () => {
                 setSucces('');
             }, 2000)
             setDataTrips({ name: '', auto: '', start: '', finish: '', passengers: '' })
+            handlerPopUp();
         }
     }
     return (
-        <section className="page__add-trips">
-            <div className="add-trips__container">
-                <h1 className="add-trips__title">Створення поїздки</h1>
-                <Form>
+        <section className={isPopUp ? "page__add-trips visible" : 'page__add-trips'}>
+            <div className="add-trips__container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Form className='form-add-trips'>
+                    <h1 className="add-trips__title">Створення поїздки</h1>
+                    <IoClose className='close-form' onClick={handlerPopUp} />
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Ім'я водія</Form.Label>
                         <Form.Control type="text" placeholder="Введіть ім'я" value={dataTrips.name} onChange={(e) => handlerName(e)} />
@@ -88,6 +97,7 @@ export const SectionAddTrips = () => {
                     </Button>
                 </Form>
             </div>
+            
         </section>
     )
 }

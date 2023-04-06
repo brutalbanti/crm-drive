@@ -5,11 +5,13 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { auth, dbreal } from '../../firebase/config';
 import React, { useEffect, useState } from 'react';
 import { onValue, ref } from 'firebase/database';
-import {useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import './header.css'
+import { SectionAddTrips } from '../Section/SectionAddTrips';
 export const Header = () => {
     const [userInfo, setUserInfo] = useState<any>({ role: '' });
     const [isBurger, setIsBurger] = useState(true);
+    const [isPopUp, setIsPopUp] = useState(false);
     const push = useNavigate();
     const signOunt = (e: any) => {
         e.preventDefault();
@@ -28,6 +30,9 @@ export const Header = () => {
             })
         })
     }, []);
+    const handlerPopUp = () => {
+        setIsPopUp(!isPopUp);
+    }
     return (
         <header>
             {[false].map((expand, index) => (
@@ -49,12 +54,7 @@ export const Header = () => {
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
                                     <Nav.Link href="/">Редагування профілю</Nav.Link>
                                     <Nav.Link href="/trips">Поїздки</Nav.Link>
-                                    {userInfo.role === 'Диспетчер' &&
-                                        <Nav.Link href="/add-trips">Створити поїздку</Nav.Link>
-                                    }
-                                    {userInfo.role === 'Адмін' &&
-                                        <Nav.Link href="/add-trips">Створити поїздку</Nav.Link>
-                                    }
+                                    <Nav.Link href="#" onClick={handlerPopUp}>Створити поїздку</Nav.Link>
                                     {userInfo.role === 'Адмін' &&
                                         <Nav.Link href="/users">Редагування користувачів</Nav.Link>
                                     }
@@ -63,6 +63,7 @@ export const Header = () => {
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
                     </Container>
+                    <SectionAddTrips isPopUp={isPopUp} handlerPopUp={handlerPopUp}/>
                 </Navbar>
             ))}
         </header>

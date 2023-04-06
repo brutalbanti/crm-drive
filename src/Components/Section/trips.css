@@ -2,6 +2,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    margin: 10px 0 0 0;
+}
+
+.add-trips-button {
+    color: white !important;
+    font-weight: 500 !important;
 }
 
 .trips__item {
@@ -44,4 +50,45 @@
 
 .trips-item-down__text span{
     font-weight: 500;
+}
+
+
+.form-add-trips {
+    width: 500px;
+}
+
+@media (max-width: 513.98px) {
+    .form-add-trips {
+        width: 100%;
+    }
+}
+
+/* ADD-TRIPS MODAL */
+
+.page__add-trips {
+    position: fixed;
+    top: -100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(97, 97, 97, 0.603);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s ease 0s;
+    z-index: 9999;
+}
+
+
+.page__add-trips.visible {
+    opacity: 1;
+    top: 0;
+    pointer-events: all;
+}
+
+.form-add-trips {
+    background: #fff;
+    padding: 20px 40px;
+    position: relative;
 }

@@ -57,9 +57,19 @@ export const SignUp = ({ changeSign }: signinterface) => {
                             uidd: uiddd,
                             uiduser: result.user.uid
                         })
+                    } else {
+                        let rolesData;
+                        Object.values(data).map((todo: any) => {
+                            rolesData = todo.role;
+                        })
+                        if (rolesData === 'Адмін') {
+                            console.log(rolesData);
+                            push('/users');
+                        } else {
+                            push('/')
+                        }
                     }
                 })
-                push('/');
             }).catch((error) => {
             });
     }
@@ -123,7 +133,7 @@ export const SignUp = ({ changeSign }: signinterface) => {
             <Form className='sign-form'>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Ім'я</Form.Label>
-                    <Form.Control type="text" placeholder="Введіть ваше ім'я"  onChange={(e) => handlerName(e)} />
+                    <Form.Control type="text" placeholder="Введіть ваше ім'я" onChange={(e) => handlerName(e)} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Ваш вік</Form.Label>
@@ -141,7 +151,6 @@ export const SignUp = ({ changeSign }: signinterface) => {
                     <Form.Label>Оберіть собі роль</Form.Label>
                     <Form.Select aria-label="Оберіть собі роль" onChange={(e) => handlerRole(e)}>
                         <option value="Пасажир">Пасажир</option>
-                        <option value="Адмін">Адмін</option>
                         <option value="Диспетчер">Диспетчер</option>
                     </Form.Select>
                 </Form.Group>

@@ -1,0 +1,10 @@
+.nav-link {
+    font-weight: 400;
+    padding: 10px 20px !important;
+}
+.offcanvas-body {
+    padding: 0 !important;
+}
+.nav-link:hover {
+    background: #f3f3f3;
+}

@@ -6,7 +6,6 @@ import { auth } from './firebase/config';
 import { Home } from './Pages/Home';
 import { Authentication } from './Pages/Authentication';
 import { Users } from './Pages/Users';
-import { AddTrips } from './Pages/AddTrips';
 import { Trips } from './Pages/Trips';
 
 function App() {
@@ -31,7 +30,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/authentication" element={<Authentication />} />
         <Route path='/users' element={<Users />} />
-        <Route path='/add-trips' element={<AddTrips />} />
         <Route path='/trips' element={<Trips />} />
       </Routes>
     </BrowserRouter>

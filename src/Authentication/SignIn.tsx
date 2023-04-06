@@ -27,7 +27,18 @@ export const SignIn = ({ changeSign }: signinterface) => {
             signInWithEmailAndPassword(auth, email, password)
                 .then(() => {
                     auth.onAuthStateChanged((user: any) => {
-                        push('/')
+                        onValue(ref(dbreal, `/users/${user.uid}`), (snapshot) => {
+                            const data = snapshot.val();
+                            if (data !== null) {
+                                Object.values(data).map((todo: any) => {
+                                    if(todo.role === 'Адмін') {
+                                        push('/users');
+                                    } else {
+                                        push('/')
+                                    }
+                                })
+                            }
+                        })
                     })
                 })
                 .catch((err) => {
@@ -56,9 +67,19 @@ export const SignIn = ({ changeSign }: signinterface) => {
                             uidd: uidd,
                             uiduser: result.user.uid
                         })
+                    } else {
+                        let rolesData;
+                        Object.values(data).map((todo: any) => {
+                            rolesData = todo.role;
+                        })
+                        if (rolesData === 'Адмін') {
+                            console.log(rolesData);
+                            push('/users');
+                        } else {
+                            push('/')
+                        }
                     }
                 })
-                push('/')
             }).catch((error) => {
             });
     }

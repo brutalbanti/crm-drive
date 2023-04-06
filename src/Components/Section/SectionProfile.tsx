@@ -62,9 +62,6 @@ export const SectionProfile = () => {
                             {profile.role !== 'Пасажир' &&
                                 <option value="Пасажир">Пасажир</option>
                             }
-                            {profile.role !== 'Адмін' &&
-                                <option value="Адмін">Адмін</option>
-                            }
                             {profile.role !== 'Диспетчер' &&
                                 <option value="Диспетчер">Диспетчер</option>
                             }
