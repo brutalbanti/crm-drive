@@ -5,6 +5,7 @@ import { db } from '../../firebase/config';
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import './trips.css';
 import { IoClose } from 'react-icons/io5';
+import { uid } from 'uid';
 
 interface popuptrips {
     isPopUp?: boolean,
@@ -42,7 +43,7 @@ export const SectionAddTrips = ({ isPopUp, handlerPopUp }: popuptrips) => {
                 auto: dataTrips.auto,
                 start: dataTrips.start,
                 finish: dataTrips.finish,
-                passengers: dataTrips.passengers
+                passengers: dataTrips.passengers,
             });
             setSucces('Поїздку успішно створено')
             setTimeout(function () {

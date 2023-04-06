@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/config";
+import { collection, deleteDoc, doc, getDoc, getDocs } from "firebase/firestore";
+import { auth, db, dbreal } from "../../firebase/config";
 import './trips.css';
 import line from '../../source/border_2.svg';
 import { Button } from "react-bootstrap";
 import { SectionAddTrips } from "./SectionAddTrips";
+import { onValue, ref } from "firebase/database";
+import { IoClose } from "react-icons/io5";
+
 export const SectionTrips = () => {
     const [collectionTrips, setCollectionTrips] = useState<any>([]);
     const [isPopUp, setIsPopUp] = useState(false);
+    const [profile, setProfile] = useState<any>({role: ''});
     useEffect(() => {
         const datatrips = async () => {
             const colRef = collection(db, 'trips');
             const snapshot = await getDocs(colRef);
             const data = snapshot.docs.map((doc) => doc.data());
             setCollectionTrips(data)
-            console.log(collectionTrips)
         }
         datatrips();
+        auth.onAuthStateChanged((user: any) => {
+            onValue(ref(dbreal, `/users/${user.uid}`), (snapshot) => {
+                const data = snapshot.val();
+                if (data !== null) {
+                    Object.values(data).map((todo: any) => {
+                        setProfile(todo)
+                    })
+                }
+            })
+        })
     }, [])
 
     const handlerPopUp = () => {
         setIsPopUp(!isPopUp)
+    }
+    
+    const handlerDeleteDoc = async (uidd: string) => {
+       console.log('Заглушка')
     }
 
     return (
@@ -33,6 +50,9 @@ export const SectionTrips = () => {
                 <div className="trips__items">
                     {collectionTrips.map((item: any, index: number) => (
                         <div className="trips__item" key={index}>
+                            {profile.role === 'Диспетчер' &&
+                                <IoClose className="close-form" onClick={() => handlerDeleteDoc(item.uidd)}/>
+                            }
                             <div className="trips-item__top">
                                 <div className="trips-item-top__distance">
                                     {item.start}
@@ -62,7 +82,7 @@ export const SectionTrips = () => {
                     ))}
                 </div>
             </div>
-            <SectionAddTrips isPopUp={isPopUp} handlerPopUp={handlerPopUp}/>
+            <SectionAddTrips isPopUp={isPopUp} handlerPopUp={handlerPopUp} />
         </section>
     )
 }
