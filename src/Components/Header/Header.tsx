@@ -34,7 +34,7 @@ export const Header = () => {
                 <Navbar bg="white" expand={expand} className="" key={index}>
                     <Container fluid>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-                        <Navbar.Brand href="#" style={{ fontWeight: '500' }}>CRM DRIVE</Navbar.Brand>
+                        <Navbar.Brand href="/" style={{ fontWeight: '500' }}>CRM DRIVE</Navbar.Brand>
                         <Navbar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}
                             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}

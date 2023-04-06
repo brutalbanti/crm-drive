@@ -8,7 +8,7 @@ import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPasswor
 import { auth, db, dbreal } from '../firebase/config';
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
-import { set, ref } from 'firebase/database';
+import { set, ref, onValue } from 'firebase/database';
 import { uid } from 'uid';
 
 
@@ -43,15 +43,21 @@ export const SignUp = ({ changeSign }: signinterface) => {
     }
     const SignGoogle = () => {
         const provider = new GoogleAuthProvider();
-        const uidd = uid()
+        const uiddd = uid()
         signInWithPopup(auth, provider)
             .then((result) => {
-                set(ref(dbreal, `/users/${result.user.uid}/${uidd}`), {
-                    first: result.user.displayName,
-                    age: 18,
-                    role: role,
-                    uidd: uidd,
-                    uiduser: result.user.uid
+                onValue(ref(dbreal, `/users/${result.user.uid}`), (snapshot) => {
+                    const data = snapshot.val();
+                    if (data === null) {
+                        const uidd = uid()
+                        set(ref(dbreal, `/users/${result.user.uid}/${uiddd}`), {
+                            first: result.user.displayName,
+                            age: 18,
+                            role: 'Пасажир',
+                            uidd: uiddd,
+                            uiduser: result.user.uid
+                        })
+                    }
                 })
                 push('/');
             }).catch((error) => {
@@ -59,15 +65,21 @@ export const SignUp = ({ changeSign }: signinterface) => {
     }
     const SignFacebook = () => {
         const provider = new FacebookAuthProvider();
-        const uidd = uid();
+        const uiddd = uid();
         signInWithPopup(auth, provider)
             .then((result) => {
-                set(ref(dbreal, `/users/${result.user.uid}/${uidd}`), {
-                    first: result.user.displayName,
-                    age: 18,
-                    role: role,
-                    uidd: uidd,
-                    uiduser: result.user.uid
+                onValue(ref(dbreal, `/users/${result.user.uid}`), (snapshot) => {
+                    const data = snapshot.val();
+                    if (data === null) {
+                        const uidd = uid()
+                        set(ref(dbreal, `/users/${result.user.uid}/${uiddd}`), {
+                            first: result.user.displayName,
+                            age: 18,
+                            role: 'Пасажир',
+                            uidd: uiddd,
+                            uiduser: result.user.uid
+                        })
+                    }
                 })
                 push('/');
             })
@@ -78,15 +90,21 @@ export const SignUp = ({ changeSign }: signinterface) => {
         if (!email || !password || !age || !name) {
             setError('Потрібно заповнити всі поля')
         } else {
-            const uidd = uid();
+            const uiddd = uid();
             createUserWithEmailAndPassword(auth, email, password)
                 .then(({ user }) => {
-                    set(ref(dbreal, `/users/${user.uid}/${uidd}`), {
-                        first: name,
-                        age: age,
-                        role: role,
-                        uidd: uidd,
-                        uiduser: user.uid
+                    onValue(ref(dbreal, `/users/${user.uid}`), (snapshot) => {
+                        const data = snapshot.val();
+                        if (data === null) {
+                            const uidd = uid()
+                            set(ref(dbreal, `/users/${user.uid}/${uiddd}`), {
+                                first: name,
+                                age: age,
+                                role: role,
+                                uidd: uidd,
+                                uiduser: user.uid
+                            })
+                        }
                     })
                     push('/');
                 })
