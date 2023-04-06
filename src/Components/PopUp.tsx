@@ -31,6 +31,9 @@ export const PopUp = ({ isPopUp, handlerPopUp, handleConfirmEdit, valueFirst, ha
                     <Form.Label>Оберіть роль користувачу</Form.Label>
                         <Form.Select aria-label="Оберіть роль" onChange={(e) => handlerValueRole(e)}>
                             <option value={valueRole}>{valueRole}</option>
+                            {valueRole !== 'Адмін' &&
+                                <option value="Адмін">Адмін</option>
+                            }
                             {valueRole !== 'Пасажир' &&
                                 <option value="Пасажир">Пасажир</option>
                             }

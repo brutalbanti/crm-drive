@@ -46,7 +46,7 @@ export const SectionProfile = () => {
         <section className="page__profile">
             <div className="profile__container">
                 <h1 className="profile__title">Налаштування профілю</h1>
-                <Form>
+                <Form className='form-profile'>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Ім'я</Form.Label>
                         <Form.Control type="text" readOnly value={profile.first} />
@@ -79,7 +79,7 @@ export const SectionProfile = () => {
                             </Form.Text>
                         </div>
                     }
-                    <Button variant="primary" onClick={handlerSubmit}>
+                    <Button variant="primary" className='button-save' onClick={handlerSubmit}>
                         Зберегти змін
                     </Button>
                 </Form>

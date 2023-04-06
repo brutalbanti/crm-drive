@@ -6,3 +6,22 @@
     font-weight: 500;
     color: green;
 }
+
+.button-save {
+    background: #9423d9 !important;
+    border: 1px solid #9423d9;
+}
+.button-save:hover {
+    background: #9323d9c5 !important;
+    border: 1px solid #9323d9c5;
+}
+
+.form-profile {
+    width: 500px;
+}
+
+@media (max-width: 531.98px) {
+    .form-profile {
+        width: 100%;
+    }
+}

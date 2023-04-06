@@ -92,12 +92,12 @@ export const SectionAddTrips = ({ isPopUp, handlerPopUp }: popuptrips) => {
                             </Form.Text>
                         </div>
                     }
-                    <Button variant="primary" onClick={submitAddTrips}>
+                    <Button variant="primary" className='button-add-trips' onClick={submitAddTrips}>
                         Створити
                     </Button>
                 </Form>
             </div>
-            
+
         </section>
     )
 }

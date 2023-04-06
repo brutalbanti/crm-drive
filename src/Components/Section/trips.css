@@ -32,11 +32,13 @@
     color: rgb(35, 33, 33);
     font-weight: 500;
 }
+
 .trips-item-top__line {
     width: 100%;
 
 }
-.trips-item-top__line img{
+
+.trips-item-top__line img {
     margin: 0 10px;
     width: 90%;
 }
@@ -48,7 +50,7 @@
     flex-wrap: wrap;
 }
 
-.trips-item-down__text span{
+.trips-item-down__text span {
     font-weight: 500;
 }
 
@@ -91,4 +93,13 @@
     background: #fff;
     padding: 20px 40px;
     position: relative;
+}
+
+.button-add-trips {
+    background: #2bcea9 !important;
+    border: 1px solid #2bcea9 !important;
+}
+.button-add-trips:hover {
+    background: #2bcea8e0 !important;
+    border: 1px solid #2bcea8e0 !important;
 }

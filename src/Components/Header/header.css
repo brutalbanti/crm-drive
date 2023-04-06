@@ -8,3 +8,8 @@
 .nav-link:hover {
     background: #f3f3f3;
 }
+
+.container-fluid {
+    justify-content: flex-start !important;
+    gap: 20px !important;
+}
