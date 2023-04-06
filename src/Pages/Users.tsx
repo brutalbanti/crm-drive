@@ -9,7 +9,7 @@ export const Users = () => {
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             if (user) {
-                push('/')
+                return
             } else {
                 push('/authentication')
             }
