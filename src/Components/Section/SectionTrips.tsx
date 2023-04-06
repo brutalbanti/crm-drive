@@ -12,13 +12,13 @@ export const SectionTrips = () => {
     const [collectionTrips, setCollectionTrips] = useState<any>([]);
     const [isPopUp, setIsPopUp] = useState(false);
     const [profile, setProfile] = useState<any>({role: ''});
+    const datatrips = async () => {
+        const colRef = collection(db, 'trips');
+        const snapshot = await getDocs(colRef);
+        const data = snapshot.docs.map((doc) => doc.data());
+        setCollectionTrips(data)
+    }
     useEffect(() => {
-        const datatrips = async () => {
-            const colRef = collection(db, 'trips');
-            const snapshot = await getDocs(colRef);
-            const data = snapshot.docs.map((doc) => doc.data());
-            setCollectionTrips(data)
-        }
         datatrips();
         auth.onAuthStateChanged((user: any) => {
             onValue(ref(dbreal, `/users/${user.uid}`), (snapshot) => {
@@ -82,7 +82,7 @@ export const SectionTrips = () => {
                     ))}
                 </div>
             </div>
-            <SectionAddTrips isPopUp={isPopUp} handlerPopUp={handlerPopUp} />
+            <SectionAddTrips isPopUp={isPopUp} handlerPopUp={handlerPopUp} datatrips={datatrips}/>
         </section>
     )
 }
