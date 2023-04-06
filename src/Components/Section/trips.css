@@ -1,0 +1,47 @@
+.trips__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.trips__item {
+    display: flex;
+    width: 600px;
+    flex-direction: column;
+    background: white;
+    border-radius: 20px;
+    margin: 0 0 10px 0;
+    padding: 20px 40px;
+}
+
+.trips-item__top {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #f3f3f3;
+    padding: 0 0 10px 0;
+}
+
+.trips-item-top__distance {
+    position: relative;
+    color: rgb(35, 33, 33);
+    font-weight: 500;
+}
+.trips-item-top__line {
+    width: 100%;
+
+}
+.trips-item-top__line img{
+    margin: 0 10px;
+    width: 90%;
+}
+
+.trips-item__down {
+    padding: 10px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.trips-item-down__text span{
+    font-weight: 500;
+}

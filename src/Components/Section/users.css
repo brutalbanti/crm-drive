@@ -1,0 +1,92 @@
+.user__item {
+    display: flex;
+    background: white;
+    margin: 0 0 10px;
+    padding: 20px;
+    border-radius: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.user-item__block-item:not(:last-child) {
+    width: 30%;
+}
+@media(max-width: 1199.98px) {
+    .user-item__block-item:not(:last-child) {
+        width: 25%;
+    }
+}
+@media(max-width: 668.98px) {
+    .user-item__block-item:not(:last-child) {
+        width: 50%;
+    }
+    .user-item__sub-title {
+        font-size: 18px;
+    }
+    .user-item__text {
+        font-size: 15px;
+    }
+}
+.user-item__text {
+    font-weight: 400;
+}
+
+.user-item__button button {
+    color: white;
+    font-weight: 500;
+}
+
+.user-item__button button:hover {
+    background: #13adcc;
+    color: white;
+}
+
+
+/* STYLED POPUP MODAL */
+
+.popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(97, 97, 97, 0.603);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s ease 0s;
+    z-index: 3;
+}
+
+.popup.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.popup__container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.users-change__form {
+    background: white;
+    width: 500px;
+    padding: 20px 40px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.close-form {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.user-item__button.form {
+    margin: 10px 0 0 0;
+}

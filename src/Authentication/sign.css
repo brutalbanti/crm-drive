@@ -1,0 +1,49 @@
+.sign-form {
+    width: 500px;
+}
+
+.sign__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 40px 0;
+}
+
+.button-sign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 0 0;
+    gap: 15px;
+}
+
+.button-sign__method {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 200px;
+    height: 50px;
+    
+}
+.button-sign__method svg {
+    font-size: 25px;
+}
+
+.text-change-sign-method {
+    margin: 0 0 0 10px;
+    font-weight: 400;
+}
+
+.text-change-sign-method span {
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.error-message__block {
+    margin: -5px 0 8px 5px;
+}
+.error-message { 
+    font-weight: 500;
+    color: rgb(209, 37, 37);
+}

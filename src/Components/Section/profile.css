@@ -1,0 +1,8 @@
+.succes-message {
+    margin: -10px 0 10px 0;
+}
+
+.succes-message small {
+    font-weight: 500;
+    color: green;
+}
