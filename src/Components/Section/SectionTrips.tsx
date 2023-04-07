@@ -3,7 +3,7 @@ import { collection, deleteDoc, doc, getDoc, getDocs } from "firebase/firestore"
 import { auth, db, dbreal } from "../../firebase/config";
 import './trips.css';
 import line from '../../source/border_2.svg';
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { SectionAddTrips } from "./SectionAddTrips";
 import { onValue, ref } from "firebase/database";
 import { IoClose } from "react-icons/io5";
@@ -11,12 +11,15 @@ import { IoClose } from "react-icons/io5";
 export const SectionTrips = () => {
     const [collectionTrips, setCollectionTrips] = useState<any>([]);
     const [isPopUp, setIsPopUp] = useState(false);
-    const [profile, setProfile] = useState<any>({role: ''});
+    const [profile, setProfile] = useState<any>({ role: '' });
+    const [succesDelete, setSuccesDelete] = useState('');
+    const [succesModal, setSuccesModal] = useState(false);
     const datatrips = async () => {
+        let col: any = [];
         const colRef = collection(db, 'trips');
         const snapshot = await getDocs(colRef);
-        const data = snapshot.docs.map((doc) => doc.data());
-        setCollectionTrips(data)
+        const data = snapshot.docs.map((doc) => col.push({ ...doc.data(), id: doc.id }));
+        setCollectionTrips(col)
     }
     useEffect(() => {
         datatrips();
@@ -35,9 +38,24 @@ export const SectionTrips = () => {
     const handlerPopUp = () => {
         setIsPopUp(!isPopUp)
     }
-    
-    const handlerDeleteDoc = async (uidd: string) => {
-       console.log('Заглушка')
+
+    const handlerDeleteDoc = async (id: string) => {
+        console.log('Заглушка')
+        const docRef = doc(db, 'trips', id);
+        deleteDoc(docRef);
+        setSuccesDelete('Успішно видалено');
+        setSuccesModal(true);
+        setTimeout(function() {
+            setSuccesModal(false);
+        }, 2000)
+        datatrips();
+    }
+    const succesAddTrips = () => {
+        setSuccesDelete('Успішно створено');
+        setSuccesModal(true);
+        setTimeout(function() {
+            setSuccesModal(false);
+        }, 2000)
     }
 
     return (
@@ -47,11 +65,16 @@ export const SectionTrips = () => {
                     Список подорожів
                 </h1>
                 <Button variant="warning" className="add-trips-button" onClick={handlerPopUp}>Створити подорож</Button>
+                <div className={succesModal ? "succes-message-delete visible" : "succes-message-delete"}>
+                    <Form.Text>
+                        {succesDelete}
+                    </Form.Text>
+                </div>
                 <div className="trips__items">
                     {collectionTrips.map((item: any, index: number) => (
                         <div className="trips__item" key={index}>
                             {profile.role === 'Диспетчер' &&
-                                <IoClose className="close-form" onClick={() => handlerDeleteDoc(item.uidd)}/>
+                                <IoClose className="close-form" onClick={() => handlerDeleteDoc(item.id)} />
                             }
                             <div className="trips-item__top">
                                 <div className="trips-item-top__distance">
@@ -82,7 +105,7 @@ export const SectionTrips = () => {
                     ))}
                 </div>
             </div>
-            <SectionAddTrips isPopUp={isPopUp} handlerPopUp={handlerPopUp} datatrips={datatrips}/>
+            <SectionAddTrips isPopUp={isPopUp} handlerPopUp={handlerPopUp} datatrips={datatrips} succesAddTrips={succesAddTrips}/>
         </section>
     )
 }

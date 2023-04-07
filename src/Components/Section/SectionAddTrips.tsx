@@ -10,10 +10,11 @@ import { uid } from 'uid';
 interface popuptrips {
     isPopUp?: boolean,
     handlerPopUp: any,
-    datatrips?: any
+    datatrips?: any,
+    succesAddTrips?: any
 }
 
-export const SectionAddTrips = ({ isPopUp, handlerPopUp, datatrips }: popuptrips) => {
+export const SectionAddTrips = ({ isPopUp, handlerPopUp, datatrips, succesAddTrips }: popuptrips) => {
     const [dataTrips, setDataTrips] = useState<any>({ name: '', auto: '', start: '', finish: '', passengers: '' });
     const [error, setError] = useState('');
     const [succes, setSucces] = useState('');
@@ -53,6 +54,7 @@ export const SectionAddTrips = ({ isPopUp, handlerPopUp, datatrips }: popuptrips
             setDataTrips({ name: '', auto: '', start: '', finish: '', passengers: '' })
             handlerPopUp();
             datatrips()
+            succesAddTrips();
         }
     }
     return (
