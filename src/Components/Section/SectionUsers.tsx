@@ -75,7 +75,7 @@ export const SectionUsers = () => {
                 <h1 className="users__title">Редагування користувачів</h1>
                 <div className="users__items">
                     {users.map((item: any, index: number) => (
-                        <div className="user__item">
+                        <div className="user__item" key={index}>
                             <div className="user-item__block-item">
                                 <h4 className="user-item__sub-title">Ім'я</h4>
                                 <div key={index} className='user-item__text'>{item[0].first}</div>
