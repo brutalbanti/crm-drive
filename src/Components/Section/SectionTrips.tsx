@@ -40,7 +40,6 @@ export const SectionTrips = () => {
     }
 
     const handlerDeleteDoc = async (id: string) => {
-        console.log('Заглушка')
         const docRef = doc(db, 'trips', id);
         deleteDoc(docRef);
         setSuccesDelete('Успішно видалено');

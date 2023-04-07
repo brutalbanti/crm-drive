@@ -8,6 +8,7 @@
 .add-trips-button {
     color: white !important;
     font-weight: 500 !important;
+    margin: 0 0 15px 0;
 }
 
 .trips__item {
@@ -138,4 +139,8 @@
     -webkit-box-shadow: -1px -2px 37px -12px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: -1px -2px 37px -12px rgba(0, 0, 0, 0.75);
     box-shadow: -1px -2px 37px -12px rgba(0, 0, 0, 0.75);
+}
+
+.trips__title {
+    margin: 0 0 15px;
 }
