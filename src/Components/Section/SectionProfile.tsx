@@ -65,6 +65,9 @@ export const SectionProfile = () => {
                             {profile.role !== 'Диспетчер' &&
                                 <option value="Диспетчер">Диспетчер</option>
                             }
+                            {profile.role !== 'Водій' &&
+                                <option value="Водій">Водій</option>
+                            }
                         </Form.Select>
                         {profile.role !== '' &&
                             <Form.Text>

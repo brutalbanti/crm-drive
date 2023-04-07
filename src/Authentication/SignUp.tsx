@@ -152,6 +152,7 @@ export const SignUp = ({ changeSign }: signinterface) => {
                     <Form.Select aria-label="Оберіть собі роль" onChange={(e) => handlerRole(e)}>
                         <option value="Пасажир">Пасажир</option>
                         <option value="Диспетчер">Диспетчер</option>
+                        <option value="Диспетчер">Водій</option>
                     </Form.Select>
                 </Form.Group>
 

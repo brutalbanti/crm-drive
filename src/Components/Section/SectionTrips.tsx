@@ -48,6 +48,7 @@ export const SectionTrips = () => {
             setSuccesModal(false);
         }, 2000)
         datatrips();
+        datatrips();
     }
     const succesAddTrips = () => {
         setSuccesDelete('Успішно створено');

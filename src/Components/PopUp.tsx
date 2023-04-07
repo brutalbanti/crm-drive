@@ -40,6 +40,9 @@ export const PopUp = ({ isPopUp, handlerPopUp, handleConfirmEdit, valueFirst, ha
                             {valueRole !== 'Диспетчер' &&
                                 <option value="Диспетчер">Диспетчер</option>
                             }
+                            {valueRole !== 'Водій' &&
+                                <option value="Диспетчер">Водій</option>
+                            }
                         </Form.Select>
                     </Form.Group>
                     <div className="user-item__button form">
